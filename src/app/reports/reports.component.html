@@ -1,0 +1,134 @@
+<section class="section section-regular dx-report-styled">
+
+  <div class="options">
+      <div class="caption">{{ReportName}}</div>
+  </div>
+
+  <!-- TODO: Don't render if empty (DONE with *ngIF)-->
+  <div #paramdiv *ngIf="hasparams" class="dx-field styled-filter-zone">
+      <dx-responsive-box singleColumnScreen="xs sm" [(screenByWidth)]="screen">
+          <dxi-row [ratio]="1"></dxi-row>
+          <dxi-col [ratio]="1"></dxi-col>
+          <dxi-col [ratio]="5"></dxi-col>
+          <dxi-col [ratio]="1"></dxi-col>
+          <dxi-item #paramitem >
+              <dxi-location [row]="0" [col]="0" [colspan]="1" screen="lg"></dxi-location>
+              <dxi-location [row]="0" [col]="0" [colspan]="1" screen="xs sm"></dxi-location>
+              <div *dxTemplate class="param item">
+                  <div class="dx-fieldset">
+                      <ng-template #filterContainer></ng-template>
+                  </div>
+              </div>
+          </dxi-item>
+
+          <dxi-item #buttonitem >
+              <dxi-location [row]="0" [col]="1" [colspan]="1" screen="lg"></dxi-location>
+              <dxi-location [row]="0" [col]="0" [colspan]="1" screen="xs sm"></dxi-location>
+              <div *dxTemplate class="button item">
+                  <div class="dx-fieldset">
+                      <dx-button id="fetch" stylingMode="outlined" type="default" text="Fetch"
+                          (onClick)="buttonClicked()">
+                      </dx-button>
+                  </div>
+              </div>
+          </dxi-item>
+
+          <dxi-item #collapseitem >
+              <dxi-location [row]="0" [col]="2" [colspan]="1" screen="lg"></dxi-location>
+              <dxi-location [row]="0" [col]="0" [colspan]="1" screen="xs sm"></dxi-location>
+              <div *dxTemplate class="collapse item">
+                  <div align="right">
+                      <dx-button icon="collapse" (click)="collapseParams()">
+                      </dx-button>
+                  </div>
+              </div>
+          </dxi-item>
+
+      </dx-responsive-box>
+  </div>
+
+  <div #collapsediv *ngIf="hasparams" class="dx-field styled-filter-zone" style="display: none;">
+          <dx-responsive-box singleColumnScreen="xs sm" [(screenByWidth)]="screen">
+              <dxi-row [ratio]="1"></dxi-row>
+              <dxi-col [ratio]="1"></dxi-col>
+              <dxi-col [ratio]="5"></dxi-col>
+              <dxi-col [ratio]="1"></dxi-col>
+              <dxi-item #paramsummaryitem >
+                  <dxi-location [row]="0" [col]="0" [colspan]="1" screen="lg"></dxi-location>
+                  <dxi-location [row]="0" [col]="0" [colspan]="1" screen="xs sm"></dxi-location>
+                  <div *dxTemplate class="param item">
+                      <div class="dx-fieldset">
+                          {{getParamSummary()}}
+                      </div>
+                  </div>
+              </dxi-item>
+              <dxi-item  >
+                  <dxi-location [row]="0" [col]="2" [colspan]="1" screen="lg"></dxi-location>
+                  <dxi-location [row]="0" [col]="0" [colspan]="1" screen="xs sm"></dxi-location>
+                  <div *dxTemplate class="collapse item">
+                      <div align="right">
+                          <dx-button icon="expand" (click)="expandParams()">
+                          </dx-button>
+                      </div>
+                  </div>
+              </dxi-item>
+  
+          </dx-responsive-box>
+      </div>
+
+  <div id="divgrid" class="dx-field styled-grid">
+      <!--[remoteOperations]="true" is removed due to conflicts with group summary-->
+      <dx-data-grid id="gridContainer" #grid [dataSource]="datasource" [showColumnLines]="false"
+          [allowColumnReordering]="true" [allowColumnResizing]="true" [showBorders]="false"
+          columnResizingMode="widget" [columnMinWidth]="80" [columnAutoWidth]="true" [rowAlternationEnabled]="true"
+          (onContentReady)="contentReady($event)" (onToolbarPreparing)="onToolbarPreparing($event)"
+          (onCellDblClick)="onRowClick($event)" dateSerializationFormat="yyyy-MM-ddTHH:mm:ssZ">
+          <dxo-scrolling mode="!fromdashboard?virtual:standart"></dxo-scrolling>
+          <dxo-export [enabled]="true" fileName="report" [allowExportSelectedData]="true"></dxo-export>
+          <dxo-paging [pageSize]="!fromdashboard?25:6"></dxo-paging>
+          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 25, 50, 100]"></dxo-pager>
+          <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"></dxo-search-panel>
+          <dxo-group-panel [visible]="!fromdashboard"></dxo-group-panel>
+          <dxo-grouping #expand [autoExpandAll]="expandFlag" [contextMenuEnabled]="true"></dxo-grouping>
+          <dxo-sorting mode="multiple"></dxo-sorting>
+          <dxo-filter-row [visible]="!fromdashboard" [applyFilter]="currentFilter"></dxo-filter-row>
+          <dxo-header-filter [visible]="!fromdashboard"></dxo-header-filter>
+          <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+          <dxo-selection mode="multiple" selectAllMode="page"></dxo-selection>
+          <dxo-column-chooser #columnChooser [enabled]="!fromdashboard" [allowSearch]="true" mode="dragAndDrop">
+          </dxo-column-chooser>
+      </dx-data-grid>
+
+  </div>
+
+
+  <dx-load-panel #loadPanel shadingColor="rgba(41,41,59,0.6)" [position]="{ of: '#divgrid' }" [visible]="false"
+      [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" (onShown)="onShown()">
+  </dx-load-panel>
+
+  <dx-popup class="popup" [width]="300" [height]="250" [showTitle]="true" title="Information" [dragEnabled]="false"
+      [closeOnOutsideClick]="true" [(visible)]="popupVisible">
+      <div *dxTemplate="let data of 'content'">
+          <div class="options">
+              <div class="caption">Options</div>
+              <div class="option">
+                  <dx-check-box text="Show Column Lines" [(value)]="grid.showColumnLines">
+                  </dx-check-box>
+              </div>
+              <div class="option">
+                  <dx-check-box text="Show Row Lines" [(value)]="grid.showRowLines">
+                  </dx-check-box>
+              </div>
+              <div class="option">
+                  <dx-check-box text="Show Borders" [(value)]="grid.showBorders">
+                  </dx-check-box>
+              </div>
+              <div class="option">
+                  <dx-check-box text="Alternating Row Color" [(value)]="grid.rowAlternationEnabled">
+                  </dx-check-box>
+              </div>
+          </div>
+
+      </div>
+  </dx-popup>
+</section>

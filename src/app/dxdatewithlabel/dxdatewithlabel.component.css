@@ -1,0 +1,7 @@
+::ng-deep .dx-field-label {
+    width: 200px;
+}
+::ng-deep .dx-field-value{
+    width: 200px !important;
+    padding-left: 10px !important;
+}

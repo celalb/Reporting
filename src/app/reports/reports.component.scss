@@ -1,0 +1,161 @@
+@import '../../app/global-scss/vars';
+
+.dx-report-styled {
+    .options {
+        .caption {
+            margin-bottom: 2rem;
+            letter-spacing: .07em;
+            text-transform: uppercase;
+            font-size: 1.125rem;
+            font-weight: 500;
+            line-height: 1.5rem;
+        }
+    }
+
+    .styled-filter-zone {
+        margin-bottom: 1.5rem;
+        padding: 2rem 2rem 1rem;
+        border-radius: 6px;
+        background-color: $c-lightgray-2;
+
+        ::ng-deep .dx-fieldset {
+            margin: 0;
+        }
+
+        .dx-fieldset + .dx-fieldset {
+            margin-left: 2rem;
+        }
+
+        ::ng-deep .dx-field {
+            margin-bottom: 1rem;
+        }
+
+        ::ng-deep .dx-field-label {
+            color: $c-text-body;
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        ::ng-deep .dx-widget {
+            color: $c-text-body;
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        ::ng-deep .dx-button-has-text {
+            transition: all .15s;
+            text-transform: none;
+            color: #ffffff;
+            border: none;
+            background-color: #56566c;
+
+            &:hover {
+                background-color: darken(#56566c, 5%);
+            }
+
+            &:focus {
+                outline: none;
+                background-color: darken(#56566c, 15%);
+            }
+        }
+
+        ::ng-deep .dx-button-text {
+            text-transform: none;
+        }
+    }
+
+    .styled-grid {
+        ::ng-deep .dx-group-panel-message {
+            color: $c-text-body;
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        ::ng-deep .dx-datagrid-nodata {
+            color: darken($c-lightgray-2, 15%);
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        ::ng-deep .dx-datagrid-text-content {
+            color: $c-text-body;
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+            font-size: .875rem;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        ::ng-deep .dx-datagrid-headers.dx-header-multi-row .dx-row.dx-header-row > td {
+            padding: 1rem;
+            border-right: 1px solid $c-lightgray-3;
+        }
+
+        ::ng-deep .dx-datagrid-headers .dx-datagrid-table .dx-row > td {
+            border-right: 1px solid $c-lightgray-3;
+        }
+
+        ::ng-deep .dx-datagrid .dx-row-alt > td {
+            background-color: $c-lightgray;
+        }
+
+        ::ng-deep .dx-datagrid .dx-row-lines > td {
+            border-bottom: 1px solid $c-lightgray-3;
+            border-bottom-color: $c-lightgray-3;
+        }
+
+        ::ng-deep .dx-datagrid .dx-datagrid-content .dx-datagrid-table .dx-row > td.dx-command-select {
+            padding-left: 11px;
+        }
+
+        ::ng-deep .dx-datagrid-rowsview .dx-row.dx-group-row:not(.dx-row-focused) {
+            color: $c-text-body;
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+            font-size: .875rem;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        ::ng-deep .dx-datagrid-headers .dx-datagrid-table .dx-row > td {
+            border-bottom: 1px solid $c-lightgray-3;
+        }
+
+        ::ng-deep .dx-datagrid-filter-row {
+            background-color: $c-lightgray-2;
+        }
+
+        ::ng-deep .dx-datagrid .dx-row-lines > td {
+            color: lighten($c-text-body, 10%);
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+            font-size: .875rem;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        ::ng-deep .dx-datagrid-group-panel .dx-group-panel-item {
+            padding: 8px 10px;
+            color: lighten($c-text-body, 10%);
+            border-radius: 16px;
+            background: $c-lightgray-2;
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 16px;
+
+            .dx-sort, .dx-header-filter {
+                color: lighten($c-text-body, 25%);
+            }
+        }
+
+        ::ng-deep .dx-datagrid-header-panel {
+            border-bottom: 1px solid $c-lightgray-3;
+            background-color: #ffffff;
+        }
+    }
+}

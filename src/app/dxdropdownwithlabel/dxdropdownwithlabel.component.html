@@ -1,0 +1,29 @@
+<div class="dx-field" style="margin-right: 10px;">
+  <div class="dx-field-label">{{label}}</div>
+  <div class="dx-field-value" style="float:left" >
+          <dx-drop-down-box
+          [(value)]="value"
+          [showClearButton]="true"
+          [placeholder]="placeholder"
+          valueExpr="id"
+          displayExpr="name"
+          valueChangeEvent="keyup"
+          [dataSource]="paramSource"
+          (onValueChanged)="valueChanged($event)"
+      >
+      <div *dxTemplate="let data of 'content'">
+              <dx-tree-view
+                  [dataSource]="paramSource"
+                  dataStructure="plain"
+                  keyExpr="id"
+                  selectionMode="single"
+                  displayExpr="id"
+                  [selectByClick]="true"
+                  (onContentReady)="$event.component.selectItem(value)"
+                  (onItemSelectionChanged)="treeView_itemSelectionChanged($event)"
+              >
+              </dx-tree-view>
+          </div>
+  </dx-drop-down-box>
+  </div>
+</div>

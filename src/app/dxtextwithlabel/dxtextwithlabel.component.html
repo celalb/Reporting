@@ -1,0 +1,13 @@
+<div class="dx-field" style="margin-right: 10px;">
+  <div class="dx-field-label">{{label}}</div>
+  <div class="dx-field-value" style="float:left" >
+          <dx-text-box
+          [(value)]="value"
+          [showClearButton]="true"
+          [placeholder]="placeholder"
+          valueChangeEvent="keyup"
+          (onValueChanged)="valueChanged($event)"
+      >
+  </dx-text-box>
+  </div>
+</div>

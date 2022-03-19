@@ -1,0 +1,11 @@
+<div class="dx-field" style="margin-right: 10px;">
+  <div class="dx-field-label">{{label}}</div>
+  <div class="dx-field-value" style="float:left" >
+          <dx-date-box
+          [value]="value"
+          [placeholder]="placeholder"
+          [showClearButton]="true"
+          (onValueChanged)="valueChanged($event)"
+      ></dx-date-box>
+  </div>
+</div>
